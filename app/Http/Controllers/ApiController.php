@@ -16,7 +16,7 @@ class ApiController extends Controller
         $data->debit_ketinggian_air = $request->debit;
         if ($request->debit >= 12 && $request->debit <= 14 ) {
             $data->status = 'Tinggi';
-        }elseif ($request->debit >14 ) {
+        }elseif ($request->debit > 14 ) {
             $data->status = 'Tinggi';
         }elseif ($request->debit >= 8 && $request->debit <= 11 ) {
             $data->status = 'Normal';

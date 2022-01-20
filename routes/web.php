@@ -19,10 +19,13 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/latest-ketinggian-air/{limit}', 'HomeController@getLatestKetinggianAir');
 Route::get('/latest-spillway', 'HomeController@getLatestSpillway');
 
+//linear regresion prediksi
 Route::get('/prediksi', 'HomeController@prediksi');
 Route::get('/do-prediction', 'HomeController@doPrediksi');
 
-Route::get('/generate-dataset', 'HomeController@generate_dataset');
+//generate dataset
+Route::get('/generate-dataset-waduk', 'HomeController@generate_dataset_waduk');
+Route::get('/generate-dataset-sungai', 'HomeController@generate_dataset_sungai');
 
 // Status IoT
 Route::get('/status-iot','StatusIotController@index');

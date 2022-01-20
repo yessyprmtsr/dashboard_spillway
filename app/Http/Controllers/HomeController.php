@@ -235,11 +235,11 @@ class HomeController extends Controller
         return $days;
     }
 
-    function generate_dataset()
+    function generate_dataset_waduk()
     {
-        $sensor_id  = 4;
-        $start_date = "2021-11-01";
-        $end_date   = "2021-11-30";
+        $sensor_id  = 1;
+        $start_date = "2021-12-01";
+        $end_date   = "2021-12-30";
 
         $begin    = new DateTime($start_date);
         $end      = new DateTime($end_date);
@@ -256,11 +256,42 @@ class HomeController extends Controller
         foreach ($dates['tanggal'] as $dk => $dv) {
             $getAverage = KetinggianAir::where('sensor_id', $sensor_id)->whereRaw('DATE(created_at) = '."'".$dv."'")->avg('debit_ketinggian_air');
             if(empty($getAverage)){
-                $rand = rand(10,200);
+                $rand = rand(1,20);
                 $kt = new KetinggianAir;
                 $kt->sensor_id            = $sensor_id;
                 $kt->debit_ketinggian_air = $rand;
-                $kt->status               = ($rand < 80)?'Normal':'Tinggi';
+                $kt->status               = ($rand >= 8 && $rand <=11 )  ? 'Normal' : (($rand >= 12 && $rand <= 14 ||  $rand > 14 ) ? 'Tinggi' : 'Rendah');
+                $kt->created_at           = $dv;
+                $kt->save();
+            }
+        }
+    }
+    function generate_dataset_sungai()
+    {
+        $sensor_id  = 4;
+        $start_date = "2021-12-01";
+        $end_date   = "2021-12-30";
+
+        $begin    = new DateTime($start_date);
+        $end      = new DateTime($end_date);
+
+        $interval = DateInterval::createFromDateString('1 day');
+        $period   = new DatePeriod($begin, $interval, $end);
+
+        $dates = [];
+        foreach ($period as $dt) {
+            $dates['tanggal'][] = $dt->format("Y-m-d");
+        }
+        $dates['tanggal'][count($dates['tanggal'])] = $end_date;
+
+        foreach ($dates['tanggal'] as $dk => $dv) {
+            $getAverage = KetinggianAir::where('sensor_id', $sensor_id)->whereRaw('DATE(created_at) = '."'".$dv."'")->avg('debit_ketinggian_air');
+            if(empty($getAverage)){
+                $rand = rand(1,20);
+                $kt = new KetinggianAir;
+                $kt->sensor_id            = $sensor_id;
+                $kt->debit_ketinggian_air = $rand;
+                $kt->status               = ($rand >= 2 && $rand <=5 )  ? 'Normal' : (($rand >= 6 && $rand <= 8 ||  $rand > 8 ) ? 'Tinggi' : 'Rendah');
                 $kt->created_at           = $dv;
                 $kt->save();
             }

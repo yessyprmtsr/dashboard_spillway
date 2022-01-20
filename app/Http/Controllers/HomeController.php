@@ -66,26 +66,18 @@ class HomeController extends Controller
         return response()->json($data);
     }
 
-    // public function getLatestSpillway(Request $request)
-    // {
-    //     $date_now = date("Y-m-d H:i:s");    
-    //     $data = Spillway::where('spillway_id', $request->sensor_id)
-    //         ->orderBy('created_at', 'DESC')
-    //         ->first();
-    //     $date_last = date('Y-m-d H:i:s', strtotime($data->created_at));
-    //     $calculate = $this->different_minutes($date_last, $date_now);
-    //     $data->ddff = $calculate;
-    //     if($calculate > 5){ // Kalo lebih dari 5 menit kondisi tertutup
-    //         $data->kondisi = 'B';
-    //     }
-    //     return response()->json($data);
-    // }
-
-        public function getLatestSpillway(Request $request)
+    public function getLatestSpillway(Request $request)
     {
+        $date_now = date("Y-m-d H:i:s");
         $data = Spillway::where('spillway_id', $request->sensor_id)
             ->orderBy('created_at', 'DESC')
             ->first();
+        // $date_last = date('Y-m-d H:i:s', strtotime($data->created_at));
+        // $calculate = $this->different_minutes($date_last, $date_now);
+        // $data->ddff = $calculate;
+        // if($calculate > 5){ // Kalo lebih dari 5 menit kondisi tertutup
+        //     $data->kondisi = 'B';
+        // }
         return response()->json($data);
     }
 

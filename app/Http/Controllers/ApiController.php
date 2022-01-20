@@ -14,9 +14,30 @@ class ApiController extends Controller
         $data = new KetinggianAir();
         $data->sensor_id = $request->sensor_id;
         $data->debit_ketinggian_air = $request->debit;
-        if ($request->debit > 100) {
+        if ($request->debit >= 12 && $request->debit <= 14 ) {
             $data->status = 'Tinggi';
-        }elseif ($request->debit >= 50 && $request->debit <= 100 ) {
+        }elseif ($request->debit >14 ) {
+            $data->status = 'Tinggi';
+        }elseif ($request->debit >= 8 && $request->debit <= 11 ) {
+            $data->status = 'Normal';
+        } else {
+            $data->status = 'Rendah';
+        }
+        $data->save();
+
+        return response()->json([200,'success']);
+    }
+
+        public function inputKetinggianAirSungai(Request $request)
+    {
+        $data = new KetinggianAir();
+        $data->sensor_id = $request->sensor_id;
+        $data->debit_ketinggian_air = $request->debit;
+        if ($request->debit >= 6 && $request->debit <= 8 ) {
+            $data->status = 'Tinggi';
+        }elseif ($request->debit > 8 ) {
+            $data->status = 'Tinggi';
+        } elseif ($request->debit >= 2 && $request->debit <= 5 ) {
             $data->status = 'Normal';
         } else {
             $data->status = 'Rendah';

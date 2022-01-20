@@ -20,5 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('/ketinggian-air','ApiController@inputKetinggianAir');
+Route::get('/ketinggian-air-sungai','ApiController@inputKetinggianAirSungai');
 Route::get('/spillway','ApiController@inputSpillway');
 Route::get('/getdata','ApiController@getData');

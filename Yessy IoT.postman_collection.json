@@ -1,0 +1,48 @@
+{
+	"info": {
+		"_postman_id": "5842ca61-8868-4e89-ad22-bbca71b24313",
+		"name": "Yessy IoT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "input ketinggian air",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_url}}/yessy_iot/api/ketinggian-air/?sensor_id=1&debit=50",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"yessy_iot",
+						"api",
+						"ketinggian-air",
+						""
+					],
+					"query": [
+						{
+							"key": "sensor_id",
+							"value": "1"
+						},
+						{
+							"key": "debit",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "input spillway",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

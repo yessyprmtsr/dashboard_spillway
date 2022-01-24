@@ -56,7 +56,7 @@
                             @php
                                 $red = '#e74c3c'; // Red
                                 $green = '#2ecc71'; // Green
-                                if (strtolower($item->kondisi) == 'b') {
+                                if (strtolower($item->kondisi) == '1.0') {
                                     $color = $red;
                                     $item->kondisi = 'OFF';
                                 } else {

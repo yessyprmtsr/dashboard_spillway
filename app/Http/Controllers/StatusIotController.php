@@ -25,7 +25,7 @@ class StatusIotController extends Controller
 
                 $calculate = $this->different_minutes($date_last, $date_now);
 
-                if ($calculate > 5) {
+                if ($calculate > 1) {
                    $data[$key]->status = 'Inactive';
                 }
             }else{
@@ -39,7 +39,7 @@ class StatusIotController extends Controller
 
                 $calculate = $this->different_minutes($date_last, $date_now);
 
-                if ($calculate > 5) {
+                if ($calculate > 1) {
                    $data[$key]->status = 'Inactive';
                 }
             }

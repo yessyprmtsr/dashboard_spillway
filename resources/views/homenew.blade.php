@@ -188,11 +188,11 @@
 				})
 				.done(function(e) {
 					status = 'TERBUKA';
-					if(e['kondisi'].toLowerCase() == 'b')
+					if(e['kondisi'] == '1.0')
 					{
 						status = 'TERTUTUP';
 					}
-					generate_chart_pie(val['name'], index, [val['name']+' ('+status+')'], [100], e['kondisi'].toLowerCase())
+					generate_chart_pie(val['name'], index, [val['name']+' ('+status+')'], [100], e['kondisi'])
 					console.log(e)
 				})
 				.fail(function() {
@@ -210,7 +210,7 @@
 			var ctxLine = document.getElementById("spillway_"+_id_chart).getContext("2d");
 
             var color = '#2ecc71';
-            if(_kondisi == 'b'){
+            if(_kondisi == '1.0'){
             	color = '#e74c3c';
             }
 

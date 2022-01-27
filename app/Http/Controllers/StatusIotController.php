@@ -13,7 +13,6 @@ class StatusIotController extends Controller
     {
         $data     = StatusIot::get()->all();
         $date_now = date("Y-m-d H:i:s");
-        //jika sensor tidak menerima data selama 5 menit maka status akan inactive
         foreach ($data as $key => $value) {
             if ($value->jenis == 'Ketinggian Air') {
                 $checkLastUpdate = KetinggianAir::where('sensor_id', $value->id)->orderBy('created_at', 'DESC')->first();
@@ -27,6 +26,7 @@ class StatusIotController extends Controller
 
                 if ($calculate > 1) {
                    $data[$key]->status = 'Inactive';
+                   StatusIot::where('id', $value->id)->update(['status' =>'Inactive']);
                 }
             }else{
                 $checkLastUpdate = Spillway::where('spillway_id', $value->id)->orderBy('created_at', 'DESC')->first();
@@ -41,7 +41,9 @@ class StatusIotController extends Controller
 
                 if ($calculate > 1) {
                    $data[$key]->status = 'Inactive';
+                   StatusIot::where('id', $value->id)->update(['status' =>'Inactive']);
                 }
+
             }
         }
         return view('statusiot.index', compact('data'));

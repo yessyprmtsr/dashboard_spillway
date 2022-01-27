@@ -25,8 +25,10 @@ class StatusIotController extends Controller
                 $calculate = $this->different_minutes($date_last, $date_now);
 
                 if ($calculate > 1) {
-                   $data[$key]->status = 'Inactive';
-                   StatusIot::where('id', $value->id)->update(['status' =>'Inactive']);
+                   $data[$key]->status = 'Tidak Aktif';
+                   StatusIot::where('id', $value->id)->update(['status' =>'Tidak Aktif']);
+                }else{
+                    StatusIot::where('id', $value->id)->update(['status' =>'Aktif']);
                 }
             }else{
                 $checkLastUpdate = Spillway::where('spillway_id', $value->id)->orderBy('created_at', 'DESC')->first();
@@ -40,8 +42,10 @@ class StatusIotController extends Controller
                 $calculate = $this->different_minutes($date_last, $date_now);
 
                 if ($calculate > 1) {
-                   $data[$key]->status = 'Inactive';
-                   StatusIot::where('id', $value->id)->update(['status' =>'Inactive']);
+                   $data[$key]->status = 'Tidak Aktif';
+                   StatusIot::where('id', $value->id)->update(['status' =>'Tidak Aktif']);
+                }else{
+                    StatusIot::where('id', $value->id)->update(['status' =>'Aktif']);
                 }
 
             }
@@ -92,6 +96,8 @@ class StatusIotController extends Controller
     {
         $d1 = strtotime($date_last);
         $d2 = strtotime($date_now);
+        // $d1 = strtotime('2020-01-01 01:00:00');
+        // $d2 = strtotime('2020-01-01 01:01:00');
         $totalSecondsDiff = abs($d1-$d2);
         $totalMinutesDiff = $totalSecondsDiff/60;
         return round($totalMinutesDiff);

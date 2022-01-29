@@ -13,9 +13,11 @@
                     <table class="table" width="60%" style="font-size: 12px;">
                         <tr>
                             <td>A.</td>
-                            <td>ON => Kondisi Spillway Terbuka</td>
+                            <td>ON => Kondisi Spillway Terbuka Dengan Durasi Penuh</td>
                             <td>B.</td>
-                            <td>OFF => Kondisi Spillway Tertutup</td>
+                            <td>OFF => Kondisi Spillway Tertutup Dengan Durasi Penuh</td>
+                            <td>C.</td>
+                            <td>ON 1/2 => Kondisi Spillway Terbuka Dengan Durasi Setengah</td>
                         </tr>
                     </table>
                 </div>
@@ -55,10 +57,14 @@
                         @foreach ($data as $item)
                             @php
                                 $red = '#e74c3c'; // Red
-                                $green = '#2ecc71'; // Green
-                                if (strtolower($item->kondisi) == '1.0') {
+                                $green = '#2ecc71';// Green
+                                $yellow =  '#f1c40f'; 
+                                if (strtolower($item->kondisi) == 'merah') {
                                     $color = $red;
                                     $item->kondisi = 'OFF';
+                                } elseif  (strtolower($item->kondisi) == 'kuning') {
+                                    $color = $yellow;
+                                    $item->kondisi = 'ON 1/2';
                                 } else {
                                     $color = $green;
                                     $item->kondisi = 'ON';

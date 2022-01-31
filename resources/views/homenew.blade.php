@@ -73,7 +73,7 @@
                         var _label = [];
                         var _data_x = [];
                         var _last_ketinggian = 0;
-                        var _last_ketinggian_word = 'Rendah';
+                        var _last_ketinggian_word = 'Dangkal';
 
                         $.each(parse, function(ii, vv) {
                             _label.push(vv['label'])
@@ -100,24 +100,9 @@
             var ctxLine = document.getElementById("ketinggian_air_chart_" + _id_chart).getContext("2d");
 
             const colors = {
-                green: {
-                    fill: '#e0eadf',
-                    stroke: '#5eb84d',
-                },
-                lightBlue: {
-                    stroke: '#6fccdd',
-                },
-                darkBlue: {
-                    fill: '#92bed2',
-                    stroke: '#3282bf',
-                },
                 blue: {
                     fill: '#2980b97a',
                     stroke: '#2980b9'
-                },
-                purple: {
-                    fill: '#8fa8c8',
-                    stroke: '#75539e',
                 },
             };
 
@@ -194,9 +179,11 @@
                         },
                     })
                     .done(function(e) {
-                        status = 'TERBUKA';
-                        if (e['kondisi'] == '1.0') {
-                            status = 'TERTUTUP';
+                        status = 'ON';
+                        if (e['kondisi'] == 'MERAH'.toLowerCase()) {
+                            status = 'OFF';
+                        } else if (e['kondisi'] == 'KUNING'.toLowerCase()) {
+                            status = 'ON 1/2';
                         }
                         generate_chart_pie(val['name'], index, [val['name'] + ' (' + status + ')'], [100], e[
                             'kondisi'])

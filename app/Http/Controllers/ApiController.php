@@ -19,9 +19,9 @@ class ApiController extends Controller
         }elseif ($request->debit > 14 ) {
             $data->status = 'Tinggi';
         }elseif ($request->debit >= 8 && $request->debit <= 11 ) {
-            $data->status = 'Normal';
+            $data->status = 'Sedang';
         } else {
-            $data->status = 'Rendah';
+            $data->status = 'Dangkal';
         }
         $data->save();
 
@@ -38,9 +38,9 @@ class ApiController extends Controller
         }elseif ($request->debit > 8 ) {
             $data->status = 'Tinggi';
         } elseif ($request->debit >= 2 && $request->debit <= 5 ) {
-            $data->status = 'Normal';
+            $data->status = 'Sedang';
         } else {
-            $data->status = 'Rendah';
+            $data->status = 'Dangkal';
         }
         $data->save();
 

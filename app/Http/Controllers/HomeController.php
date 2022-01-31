@@ -254,7 +254,7 @@ class HomeController extends Controller
                 $kt = new KetinggianAir;
                 $kt->sensor_id            = $sensor_id;
                 $kt->debit_ketinggian_air = $rand;
-                $kt->status               = ($rand >= 8 && $rand <=11 )  ? 'Normal' : (($rand >= 12 && $rand <= 14 ||  $rand > 14 ) ? 'Tinggi' : 'Rendah');
+                $kt->status               = ($rand >= 8 && $rand <=11 )  ? 'Normal' : (($rand >= 12 && $rand <= 14 ||  $rand > 14 ) ? 'Tinggi' : 'Dangkal');
                 $kt->created_at           = $dv;
                 $kt->save();
             }
@@ -285,7 +285,7 @@ class HomeController extends Controller
                 $kt = new KetinggianAir;
                 $kt->sensor_id            = $sensor_id;
                 $kt->debit_ketinggian_air = $rand;
-                $kt->status               = ($rand >= 2 && $rand <=5 )  ? 'Normal' : (($rand >= 6 && $rand <= 8 ||  $rand > 8 ) ? 'Tinggi' : 'Rendah');
+                $kt->status               = ($rand >= 2 && $rand <=5 )  ? 'Normal' : (($rand >= 6 && $rand <= 8 ||  $rand > 8 ) ? 'Tinggi' : 'Dangkal');
                 $kt->created_at           = $dv;
                 $kt->save();
             }
